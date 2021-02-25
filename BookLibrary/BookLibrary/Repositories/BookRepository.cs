@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BookLibrary.Contexts;
+using BookLibrary.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +9,55 @@ using System.Threading.Tasks;
 
 namespace BookLibrary.Repositories
 {
-    class BookRepository
+    public class BookRepository : IBookRepository
     {
+        BookContext db;
+        public BookRepository()
+        {
+            db = new BookContext();        
+        }
+        public void CreateBookAsync(Book book)
+        {
+            db.Books.AddAsync(book);
+            db.SaveChangesAsync();
+        }
+
+        public void DeleteBookAsync(Book book)
+        {
+            db.Books.Remove(book);
+            db.SaveChangesAsync();
+        }
+
+        public async Task<List<Book>> GetAllBooksAsync()
+        {
+            return await db.Books.ToListAsync();
+        }
+
+        public async Task<Book> GetBookByIdAsync(int id)
+        {
+            return await db.Books.SingleOrDefaultAsync(d =>d.Id == id);
+        }
+
+        public async Task<List<Book>> GetBooksByNameAsync(string name, int afterId)
+        {
+            return await db.Books
+                .Where(d => d.Name.Contains(name) && d.Id > afterId)
+                .OrderBy(d => d.Id)
+                .ToListAsync();
+        }
+
+        public async Task<List<Book>> GetBooksByThemeAsync(string theme, int afterId)
+        {
+            return await db.Books
+                .Where(d => d.Theme.Contains(theme) && d.Id > afterId)
+                .OrderBy(d => d.Id)
+                .ToListAsync();
+        }
+
+        public void UpdateBookAsync(Book book)
+        {
+            db.Books.Update(book);
+            db.SaveChangesAsync();
+        }
     }
 }
