@@ -11,10 +11,10 @@ namespace BookLibrary.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name{ get; set; }
+        public string Name { get; set; }
         [Required]
         public string Author { get; set; }
-        public double Price{ get; set; }
+        public double Price { get; set; }
         public DateTime PublishedDate { get; set; } = DateTime.UtcNow;
         public string Photo { get; set; }
         [Required]
