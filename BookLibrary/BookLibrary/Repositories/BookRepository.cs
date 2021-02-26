@@ -41,6 +41,14 @@ namespace BookLibrary.Repositories
             return await db.Books.SingleOrDefaultAsync(d =>d.Id == id);
         }
 
+        public async Task<List<Book>> GetBooksByDateAsync(DateTime publisheDate)
+        {
+            return await db.Books
+                .Where(d => d.PublishedDate.Year == publisheDate.Year && d.PublishedDate.Month == publisheDate.Month && d.PublishedDate.Day == publisheDate.Day)
+                .OrderBy(d => d.Id)
+                .ToListAsync();
+        }
+
         public async Task<List<Book>> GetBooksByNameAsync(string name, int afterId)
         {
             return await db.Books
@@ -62,5 +70,6 @@ namespace BookLibrary.Repositories
             db.Books.Update(book);
             db.SaveChangesAsync();
         }
+
     }
 }

@@ -15,5 +15,7 @@ namespace BookLibrary.Repositories
         Task<List<Book>> GetAllBooksAsync(int afterId);
         Task<List<Book>> GetBooksByNameAsync(string name, int afterId);
         Task<List<Book>> GetBooksByThemeAsync(string theme, int afterId);
+        Task<List<Book>> GetBooksByDateAsync(DateTime publisheDate);
+
     }
 }
