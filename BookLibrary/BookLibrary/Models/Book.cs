@@ -19,5 +19,12 @@ namespace BookLibrary.Models
         public string Photo { get; set; }
         [Required]
         public string Theme { get; set; }
+
+        public Book(string name, string author, string theme)
+        {
+            Name = name;
+            Author = author;
+            Theme = theme;
+        }
     }
 }
