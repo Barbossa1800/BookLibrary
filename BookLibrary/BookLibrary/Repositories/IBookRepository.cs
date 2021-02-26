@@ -12,7 +12,7 @@ namespace BookLibrary.Repositories
         void UpdateBookAsync(Book book);
         void DeleteBookAsync(Book book);
         Task<Book> GetBookByIdAsync(int id);
-        Task<List<Book>> GetAllBooksAsync();
+        Task<List<Book>> GetAllBooksAsync(int afterId);
         Task<List<Book>> GetBooksByNameAsync(string name, int afterId);
         Task<List<Book>> GetBooksByThemeAsync(string theme, int afterId);
     }

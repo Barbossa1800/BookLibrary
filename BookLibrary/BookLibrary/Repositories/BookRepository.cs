@@ -28,9 +28,12 @@ namespace BookLibrary.Repositories
             db.SaveChangesAsync();
         }
 
-        public async Task<List<Book>> GetAllBooksAsync()
+        public async Task<List<Book>> GetAllBooksAsync(int afterId)
         {
-            return await db.Books.ToListAsync();
+            return await db.Books
+                .Where(d => d.Id < afterId)
+                .OrderBy(d => d.Id)
+                .ToListAsync();
         }
 
         public async Task<Book> GetBookByIdAsync(int id)
