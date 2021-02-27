@@ -35,10 +35,11 @@ namespace BookLibrary.Repositories
             db.SaveChangesAsync();
         }
 
-        public async Task<List<Book>> GetAllBooksAsync(int afterId)
+        public async Task<List<Book>> GetAllBooksAsync(int afterId = 0)
         {
             return await db.Books
                 .Where(d => d.Id < afterId)
+                .Take(20)
                 .OrderBy(d => d.Id)
                 .ToListAsync();
         }
@@ -56,18 +57,20 @@ namespace BookLibrary.Repositories
                 .ToListAsync();
         }
 
-        public async Task<List<Book>> GetBooksByNameAsync(string name, int afterId)
+        public async Task<List<Book>> GetBooksByNameAsync(string name, int afterId = 0)
         {
             return await db.Books
                 .Where(d => d.Name.Contains(name) && d.Id > afterId)
+                .Take(20)
                 .OrderBy(d => d.Id)
                 .ToListAsync();
         }
 
-        public async Task<List<Book>> GetBooksByThemeAsync(string theme, int afterId)
+        public async Task<List<Book>> GetBooksByThemeAsync(string theme, int afterId = 0)
         {
             return await db.Books
                 .Where(d => d.Theme.Contains(theme) && d.Id > afterId)
+                .Take(20)
                 .OrderBy(d => d.Id)
                 .ToListAsync();
         }
