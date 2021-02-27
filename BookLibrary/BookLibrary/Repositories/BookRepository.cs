@@ -38,7 +38,7 @@ namespace BookLibrary.Repositories
         public async Task<List<Book>> GetAllBooksAsync(int afterId = 0)
         {
             return await db.Books
-                .Where(d => d.Id < afterId)
+                .Where(d => d.Id > afterId)
                 .Take(20)
                 .OrderBy(d => d.Id)
                 .ToListAsync();
