@@ -11,6 +11,7 @@ namespace BookLibrary.Repositories
         void CreateBookAsync(Book book);
         void UpdateBookAsync(Book book);
         void DeleteBookAsync(Book book);
+        void DeleteAllBooksAsync();
         Task<Book> GetBookByIdAsync(int id);
         Task<List<Book>> GetAllBooksAsync(int afterId);
         Task<List<Book>> GetBooksByNameAsync(string name, int afterId);

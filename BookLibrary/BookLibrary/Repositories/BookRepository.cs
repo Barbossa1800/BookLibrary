@@ -22,6 +22,13 @@ namespace BookLibrary.Repositories
             db.SaveChangesAsync();
         }
 
+        public async void DeleteAllBooksAsync()
+        {
+            var booksForDelete = await db.Books.ToListAsync();
+            db.Books.RemoveRange(booksForDelete);
+            await db.SaveChangesAsync();
+        }
+
         public void DeleteBookAsync(Book book)
         {
             db.Books.Remove(book);
