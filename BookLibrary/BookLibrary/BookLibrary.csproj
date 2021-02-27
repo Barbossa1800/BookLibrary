@@ -4,6 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Barbossa1800</Authors>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Fixed bug with getting</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
